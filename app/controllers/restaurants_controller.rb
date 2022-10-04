@@ -6,13 +6,13 @@ class RestaurantsController < ApplicationController
     
     def show
         restaurant = Restaurant.find(params[:id])
-        render json: restaurant
+        render json: restaurant.to_json(include: :pizzas)
     end
     
     def destroy
         restaurant = Restaurant.find(params[:id])
         restaurant.destroy
-        render json: restaurant.pizzas
+        render json: restaurant
     end
 
     private
